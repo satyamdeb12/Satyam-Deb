@@ -1,0 +1,1 @@
+There are no assignments in Spring Boot.

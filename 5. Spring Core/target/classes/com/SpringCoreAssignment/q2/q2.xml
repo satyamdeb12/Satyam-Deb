@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd
+   	http://www.springframework.org/schema/context
+   	http://www.springframework.org/schema/context/spring-context.xsd">
+   	
+   	<bean id="question" class="com.SpringCoreAssignment.q2.Question">
+        <property name="questionId" value="1"/>
+        <property name="question" value="Which technologies can be used to develop Websites?"/>
+        <property name="answersInList">
+            <list>
+                <value>Spring</value>
+                <value>Angular</value>
+                <value>React</value>
+            </list>
+        </property>
+        <property name="answersInSet">
+            <set>
+                <value>Spring</value>
+                <value>Angular</value>
+                <value>React</value>
+            </set>
+        </property>
+        <property name="answersInMap">
+            <map>
+                <entry key="1" value="Spring"/>
+                <entry key="2" value="Angular"/>
+                <entry key="3" value="React"/>
+            </map>
+        </property>
+
+    </bean>
+</beans>

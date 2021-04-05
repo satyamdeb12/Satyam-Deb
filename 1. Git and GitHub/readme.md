@@ -1,0 +1,1 @@
+This Directory Contains the solutions of Git and GitHb Assignmets

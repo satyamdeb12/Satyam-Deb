@@ -1,0 +1,29 @@
+div.first {
+    float: left;
+    width: 100%;
+    }
+
+div.second {
+	float: left;
+	width: 100%;
+}
+
+.p1{
+    padding-top: 20px;
+    float: left;
+}
+.i1{
+    float: left;
+    height: 50px;
+    width: 50px;
+    border-radius: none;
+    border: solid purple;
+}
+.p2{
+    float: left;
+}
+.i2{
+    float: left;
+    height: 50px;
+    width: 50px;
+}

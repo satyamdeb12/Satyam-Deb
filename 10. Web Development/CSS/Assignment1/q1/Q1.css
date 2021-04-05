@@ -1,0 +1,23 @@
+h1{
+    background-color: blue;
+    margin:0;
+    padding-bottom: 15px;
+    
+}
+.insideDivP{
+    background-color: violet;
+    margin:0;
+    padding-bottom: 15px;
+}
+
+.ownBg{
+    background-color: powderblue;
+    margin:0;
+    padding-bottom: 15px;
+}
+
+.stillDiv{
+    background-color: violet;
+    margin:0;
+    padding-bottom: 15px;
+}

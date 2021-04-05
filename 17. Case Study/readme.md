@@ -1,0 +1,1 @@
+This Directory Contains the Frontend and Backend of the Case Study.

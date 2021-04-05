@@ -1,0 +1,165 @@
+--------------------------------------Assignment 1 --------------------------------------
+1.get all documents
+=>db.movies.find().pretty()
+2.get all documents with writer set to "Quentin Tarantino"
+=>db.movies.find({writer: "Quentin Tarantino"})
+3.get all documents where actors include "Brad Pitt"
+=>db.movies.find({actors: "Brad Pitt"})
+4.get all documents with franchise set to "The Hobbit"
+=>db.movies.find({franchise: "The Hobbit"})
+5.get all movies released in the 90s
+=>db.movies.find({year: {$gt: 1990, $lt: 2000}})
+6.get all movies released before the year 2000 or after 2010
+=>db.movies.find({$or: [{year:{$gt:2010}},{year: {$lt:2000}}]})
+A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug.
+
+
+-------------------------Update------------------------
+1. Add a synopsis to "The Hobbit: An Unexpected Journey" : "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."
+=>db.movies.update({title : "The Hobbit: An Unexpected Journey"},{$set: {synopsis: "A reluctant hobbit, Bilbo Baggins, sets out to the Lonely Mountain with a spirited group of dwarves to reclaim their mountain home - and the gold within it - from the dragon Smaug."}})
+2. Add a synopsis to "The Hobbit: The Desolation of Smaug" : "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."
+=>db.movies.update({title : "The Hobbit: The Desolation of Smaug"},{$set: {synopsis: "The dwarves, along with Bilbo Baggins and Gandalf the Grey, continue their quest to reclaim Erebor, their homeland, from Smaug. Bilbo Baggins is in possession of a mysterious and magical ring."}})
+3. Add an actor named "Samuel L. Jackson" to the movie "Pulp Fiction"
+=>db.movies.update({title: "Pulp Fiction"}, {$push: {actors: "Samuel L. Jackson"}})
+
+-------------------------Text search------------------------
+1. find all movies that have a synopsis that contains the word "Bilbo"
+=>db.movies.find({synopsis: /Bilbo/})
+2. find all movies that have a synopsis that contains the word "Gandalf"
+=>db.movies.find({synopsis: /Gandalf/})
+3. find all movies that have a synopsis that contains the word "Bilbo" and not the word "Gandalf"
+=>db.movies.find({$and:[{synopsis:{$regex:"Bilbo"}}, {synopsis:{$not:/Gandalf/}}]})
+4. find all movies that have a synopsis that contains the word "dwarves" or "hobbit"
+=>db.movies.find({$or: [{synopsis: /dwarves/}, {synopsis: /hobbit/}]})
+5. find all movies that have a synopsis that contains the word "gold" and "dragon"
+=>db.movies.find({synopsis: /gold/, synopsis: /dragon/})
+
+
+-------------------------Delete------------------------
+1. delete the movie "Pee Wee Herman's Big Adventure"
+=>db.movies.deleteOne({title: "Pee Wee Herman's Big Adventure"})
+2. delete the movie "Avatar"
+=>db.movies.deleteOne({title: "Avatar"})
+
+Relationships
+1. Insert the following documents into a users collection
+=>db.users.insertMany([
+{username : "GoodGuyGreg",
+first_name : "Good Guy",
+last_name : "Greg"
+},
+
+{username : "ScumbagSteve",
+full_name :{
+	first : "Scumbag",
+	last : "Steve"
+	}
+}])
+
+--------------------Insert the following documents into a posts collection-----------------
+=> db.posts.insertMany([
+{username : "GoodGuyGreg",
+title : "Passes out at party",
+body : "Wakes up early and cleans house"
+},
+
+{username : "GoodGuyGreg",
+title : "Steals your identity",
+body : "Raises your credit score"
+},
+
+{username : "GoodGuyGreg",
+title : "Reports a bug in your code",
+body : "Sends you a Pull Request"
+},
+
+{username : "ScumbagSteve",
+title : "Borrows something",
+body : "Sells it"
+},
+
+{username : "ScumbagSteve",
+title : "Borrows everything",
+body : "The end"
+},
+
+{username : "ScumbagSteve",
+title : "Forks your repo on github",
+body : "Sets to private"
+}])
+
+------------------------Insert the following documents into a comments collection------------------------------
+3.1. {username : "GoodGuyGreg",
+	comment : "Hope you got a good deal!",
+	post : [post_obj_id] where [post_obj_id] is the ObjectId of the posts document: "Borrows something"
+	}
+=>var theId1 = db.posts.findOne({title: "Borrows something"})._id
+=>db.comments.insertOne(
+{username : "GoodGuyGreg",
+comment : "Hope you got a good deal!",
+post : theId1
+})
+
+3.2. {username : "GoodGuyGreg",
+	comment : "What's mine is yours!",
+	post : [post_obj_id] where [post_obj_id] is the ObjectId of the posts document: "Borrows everything"
+	}
+=>var theId2 = db.posts.findOne({title: "Borrows everything"})._id
+=>db.comments.insertOne(
+{username : "GoodGuyGreg",
+comment : "What's mine is yours!",
+post : theId2
+})
+
+3.3. {username : GoodGuyGreg
+	comment : Don't violate the licensing agreement!
+	post : [post_obj_id] where [post_obj_id] is the ObjectId of the posts document: "Forks your repo on github
+	}
+=>var theId3 = db.posts.findOne({title: "Forks your repo on github"})._id
+=>db.comments.insertOne(
+{username : "GoodGuyGreg",
+comment : "Don't violate the licensing agreement!",
+post : theId3
+})
+
+3.4. {username : ScumbagSteve
+	comment : It still isn't clean
+	post : [post_obj_id] where [post_obj_id] is the ObjectId of the posts document: "Passes out at party"
+	}
+=>var theId4 = db.posts.findOne({title: "Passes out at party"})._id
+=>db.comments.insertOne(
+{username : "ScumbagSteve",
+comment : "It still isn't clean",
+post : theId4
+})
+
+3.5. {username : ScumbagSteve
+	comment : Denied your PR cause I found a hack
+	post : [post_obj_id] where [post_obj_id] is the ObjectId of the posts document: "Reports a bug in your code"
+	}
+=>var theId5 = db.posts.findOne({title: "Reports a bug in your code"})._id
+=>db.comments.insertOne(
+{username : "ScumbagSteve",
+comment : "Denied your PR cause I found a hack",
+post : theId5
+})
+
+
+---------------------------Querying related collections--------------------------
+1. find all users
+=> db.users.find({},{username: 1})
+2. find all posts
+=>db.posts.find().pretty()
+3. find all posts that was authored by "GoodGuyGreg"
+=>db.posts.find({username: "GoodGuyGreg"}).pretty()
+4. find all posts that was authored by "ScumbagSteve"
+=>db.posts.find({username: "ScumbagSteve"}).pretty()
+5. find all comments
+=>db.comments.find().pretty()
+6. find all comments that was authored by "GoodGuyGreg"
+=>db.comments.find({username: "GoodGuyGreg"}).pretty()
+7. find all comments that was authored by "ScumbagSteve"
+=>db.comments.find({username: "ScumbagSteve").pretty()
+8. find all comments belonging to the post "Reports a bug in your code"
+=>var p = db.posts.findOne({title : "Reports a bug in your code"})._id
+=> db.comments.find({post: p},{username:1,comment:1}).pretty()

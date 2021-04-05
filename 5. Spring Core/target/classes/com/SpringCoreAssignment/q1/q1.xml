@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+   	http://www.springframework.org/schema/beans/spring-beans.xsd
+   	http://www.springframework.org/schema/context
+   	http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean class="com.SpringCoreAssignment.q1.Address"
+		name="addressBeanGetter">
+		<property name="street" value="MKG Street" />
+		<property name="city" value="Kolkata" />
+		<property name="state" value="West Bengal" />
+		<property name="zip" value="700088" />
+		<property name="country" value="India" />
+	</bean>
+	<bean class="com.SpringCoreAssignment.q1.Customer"
+		name="customerBeanGetter">
+		<property name="customerId" value="101"></property>
+		<property name="customerName" value="Satyam"></property>
+		<property name="customerContact" value="+91 1234567890"></property>
+		<property name="customerAddress" ref="addressBeanGetter"></property>
+	</bean>
+
+	
+
+
+
+</beans>

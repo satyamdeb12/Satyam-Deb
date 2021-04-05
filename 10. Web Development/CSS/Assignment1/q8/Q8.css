@@ -1,0 +1,13 @@
+p{
+    background-color: paleturquoise;
+}
+
+.hardSolid{
+    border:5px solid black;
+}
+.mediumSolid{
+    border:3px solid black;
+}
+.lightSolid{
+    border:2px solid black;
+}

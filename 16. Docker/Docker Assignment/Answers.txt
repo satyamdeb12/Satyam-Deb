@@ -1,0 +1,66 @@
+1. 	> docker -v
+2. 	> docker pull ubuntu
+3. 	> docker images
+4. 	> docker images --no-trunc -q
+		> 8e428cff54c8a8d9759e0b0e13d9224ffe7617abb53a73e01550e32c15827e17
+5. 	> docker create 8e428cff54c8
+6. 	> docker ps
+7. 	> docker ps -a
+8. 	> docker ps --no-trunc -a -q
+		> f2e2cba8e103ef2b86f64fe8ebe4272a3cbf246ea2380815aecd1f27d5fd180f
+9. 	> docker history --no-trunc 8e428cff54c8
+10. > docker pull tomcat:7.0.59
+11. > docker run a13b37c3bd8b
+12. > docker inspect -f "{{ .NetworkSettings.IPAddress }}" f07ee8d4577a
+		> 172.17.0.2
+13. > docker ps -a
+		> PORT = 8080
+14. > http://172.17.0.2:8080/
+15. > docker images
+		> 346 MB
+16. > docker exec f3889c31963c env
+17. > docker ps
+18. > docker images
+	> docker run -p 7070:8080 -d a54088d94348
+	> docker run -p 9090:8080 -d a54088d94348
+19. > docker pull ubuntu:20.10
+	> docker pull ubuntu:20.04
+20. > docker run -it ubuntu:20.10
+21.	> docker run -d ubuntu:20.04
+22. > docker ps -a
+23. > docker run -d tomcat:7.0.59
+24. > docker logs f154361367ff
+25. > docker ps -a
+	> docker run -it ubuntu:20.04
+26. > docker run --name MyUbuntu1 -it cea27b2c7d87
+	> whoami
+27. > cd root
+	> touch hello.txt
+28. > apt-get update
+	> apt-get install terminator
+29. > exit
+30. > docker ps
+31. > docker run --name MyUbuntu2  cea27b2c7d87
+32. > whoami
+33. > docker kill 54a77a493418
+34. > Yes
+35. > docker commit -m "Created hello.txt file in root directory and installed terminator" -a "Satyam Deb" myubuntu1 newimagename:newtag
+36. docker run --name existingubuntu1 3608c5a27777
+37. > exit
+	> docker stop mytomcat
+38. > docker run --name myubuntu3 cea27b2c7d87
+	> touch index.html
+	> vim <h1>This is Tomcat Container</h1>
+	> :wq!
+	> exit
+39. > docker images --help
+	> docker images -a => all docker images
+	> docker -f "dangling=true" => show all dangling images
+	> docker images -q => show only image id
+40. > docker ps --help
+	> docker ps -a => Show all running and stopped containers
+	> docker ps -f before=9c3527ed70ce
+	> docker ps -a -q => Only ID of all containers
+	> docker ps -a -n 2 +. Show only two containers
+	> docker ps -l => show the latest container
+	> docker ps -a -s => Show all containers with size.

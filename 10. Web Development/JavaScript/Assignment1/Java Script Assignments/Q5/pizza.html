@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pizza.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Pizza Service</h2>
+    <form id="form" onsubmit="return false">
+        <p>Name: <input class="name" type="text" required/> </p>
+        <p>Email: <input class="email" type="email" required/> </p>
+        <br>
+        <h4>Toppings:</h4>
+        <p>Extra Cheese: <input value="extraCheese" class="extraCheese" type="checkbox"/></p>
+        <p>Pepperoni: <input value="pepperoni" class="pepperoni" type="checkbox"/></p>
+        <p>Olives: <input value="olives" class="olives" type="checkbox"/></p>
+        <p>Pepper: <input value="pepper" class="pepper" type="checkbox"/></p>
+        <p>Bacon: <input value="bacon" class="bacon" type="checkbox"/></p>
+        <p>Tomatoes: <input value="tomatoes" class="tomatoes" type="checkbox"/></p>
+        <p>Mushrooms: <input value="mushrooms" class="mushrooms" type="checkbox"/></p>
+        <br>
+        <h4>How do you want to get your pizza</h4>
+        <input id="delivery" type="radio" name = "ans" value="Delivery" required> Delivery </br>
+        <input id="pickup" type="radio" name = "ans" value="pickup"> Pickup </br>
+        <br>
+
+        Tip? <select id="tip" name="tip">
+            <option id="tip15" value="15">15%</option>
+            <option id="tip20" value="20">20%</option>
+            <option id="tip25" value="25">25%</option>
+        </select>
+
+        <hr>
+
+        <h4>Address:</h4>
+        <textarea id="address" name="address" required></textarea>
+
+        <button id="submit">Submit</button>
+        <button id="reset" type="reset">Reset</button>
+        <button id="showSummary" disabled>Show Summary</button>
+
+       <br>
+      
+        
+    </form>
+
+    
+
+    <Table id="table" border="1"></Table>
+
+    <script src="pizza.js"></script>
+</body>
+</html>

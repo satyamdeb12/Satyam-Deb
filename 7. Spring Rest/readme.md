@@ -1,0 +1,1 @@
+This Directory Contains the Solutions of Spring REST Assignments

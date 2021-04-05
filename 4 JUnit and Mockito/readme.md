@@ -1,0 +1,1 @@
+No Assignments in JUnit and Mockito.

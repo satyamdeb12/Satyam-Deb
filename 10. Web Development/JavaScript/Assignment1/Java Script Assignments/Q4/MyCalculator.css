@@ -1,0 +1,18 @@
+body{
+    margin-left: auto;
+    margin-top:100px;
+    margin-right:auto;
+    width:100px;
+}
+
+.box{
+    text-align: center;
+    height: 100px;
+    margin-bottom: 20px;
+    width:100px;
+    border: 2px solid black;
+}
+
+p{
+    margin-top:40px;
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="account1" class="com.SpringCoreAssignment.q3.BankAccount">
+        <property name="accountId" value="1"/>
+        <property name="accountHolderName" value="amit"/>
+        <property name="accountType" value="savings account"/>
+        <property name="accountBalance" value="10000"/>
+    </bean>
+
+    <bean id="account2" class="com.SpringCoreAssignment.q3.BankAccount">
+        <property name="accountId" value="2"/>
+        <property name="accountHolderName" value="sumit"/>
+        <property name="accountType" value="savings account"/>
+        <property name="accountBalance" value="100000"/>
+    </bean>
+
+    <bean id="repo" class="com.SpringCoreAssignment.q3.BankAccountRepositoryImpl" autowire="byType"/>
+
+    <bean id="bankService" class="com.SpringCoreAssignment.q3.BankAccountServiceImpl" autowire="byName"/>
+
+    <bean id="controller" class="com.SpringCoreAssignment.q3.BankAccountController" autowire="byName"/>
+
+</beans>
