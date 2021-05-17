@@ -1,0 +1,81 @@
+<app-navbar></app-navbar>
+
+<!-- <div class="grid-container">
+    <mat-grid-list cols="3" rowHeight="500px">
+      <mat-grid-tile *ngFor="let card of cartProduct" [colspan]="card?.colsSpan" [rowspan]="card?.rowsSpan">
+        <mat-card class="dashboard-card card-image" [style.background-image]="getImage(card.displayImage)">
+          <mat-card-header>
+            <mat-card-title class="product-title">
+              {{card?.productName}}
+              <hr>
+            </mat-card-title>
+            <div class="exploreBtn" *ngIf="loggedIn">
+              <button href="#" class="card-btn" >Buy</button>
+            </div>
+          </mat-card-header>
+          <mat-card-content class="dashboard-card-content short-description">
+            <div>{{card?.shortDescription}} {{card?.rating}}</div>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+</div> -->
+
+<div class="small-container cart-page" >
+  <table >
+    <tr>
+      <th>Product</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+    </tr>
+    <br>
+    <tr *ngFor="let card of cartProducts">
+      <td>
+        <div class="cart-info"  >
+          <img src="{{card.productImage}}" alt="Image">
+          <div>
+            <small>{{card.productName}}</small>
+            <br>
+            <br>
+            <small>Price {{card.price}}</small>
+            <br>
+            <button mat-button color="warn" disableRipple="true" (click)="onRemoveClick(card.cartId)"> Remove</button>
+          </div>
+        </div>
+      </td>
+
+      <td>
+        <form >
+          <input type="number" ngModel="{{card.quantity}}" (ngModelChange)="onQuantityChange(card.id, quantity.value)" #quantity="ngModel" ngModel name="quantity" id="quantity" class="form-control" required />
+      </form>
+      </td>
+      <td>₹{{card.price*card.quantity}}</td>
+    </tr>
+  </table>
+
+  <div class="total-price">
+    <table>
+      <tr>
+        <td>Subtotal</td>
+        <td>₹ {{subTotal}}</td>
+      </tr>
+      <tr>
+        <td>Tax</td>
+        <td>₹ 0.00</td>
+      </tr>
+      <tr>
+        <td>Delivery</td>
+        <td>₹ {{delivery}}</td>
+      </tr>
+      <tr>
+        <td>Total</td>
+        <td>₹ {{total}}</td>
+      </tr>
+      <tr>
+        <td>
+          <button (click)="checkoutClick()" mat-raised-button color="primary" disableRipple="true" >Checkout</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

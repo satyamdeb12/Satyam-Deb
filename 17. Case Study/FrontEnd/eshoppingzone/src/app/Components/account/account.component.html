@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+
+<div class="first">
+    <div class="main-container">
+        <div class="account">
+            <h2>Account Details</h2>
+            
+            <div class="existing">
+                <p>Name: {{user.fullName}} </p>
+                <p>Email: {{user.email}}</p>
+                <p>Phone: {{user.phone}}</p>
+                
+                <hr>
+                <br>
+                <div class="change">
+                  <h2>Update Password</h2>
+
+                  <form  #updatePassword="ngForm" >
+                    <input type="hidden" ngModel="{{user?.id}}" name="id" class="form-control" id="id" placeholder="Id">
+                    <input type="hidden" ngModel="{{user?.fullName}}" name="fullName" class="form-control" id="fullName" placeholder="Full Name">
+                    <input type="hidden" ngModel="{{user?.username}}" name="username" class="form-control" id="username" placeholder="Username">
+                    <input type="password" ngModel name="password" class="form-control" id="password" placeholder="New Password">
+                    <input type="hidden" ngModel="{{user?.email}}" name="email" class="form-control" id="email" placeholder="Email">
+                    <input type="hidden" ngModel="{{user?.phone}}" name="phone" class="form-control" id="phone" placeholder="Email">
+                    <input type="hidden" ngModel="{{user?.isSeller}}" name="isSeler" class="form-control" id="isSeller" placeholder="Are You Seller?">
+                    <br>
+                    <button [disabled]="updatePassword.invalid " (click)="onPasswordUpdate(updatePassword.value)" type="submit" mat-raised-button color="primary" >Update Password</button>
+                  </form>
+                </div>
+                
+                <hr>
+                <br>
+                <div class="update">
+                    <h2>Update Profile</h2>
+                      <form  #updateProfile="ngForm" >
+                        <input type="hidden" ngModel="{{user?.id}}" name="id" class="form-control" id="id" placeholder="Id">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" ngModel="{{user?.fullName}}" name="fullName" class="form-control" id="fullName" placeholder="Full Name">
+                        <input type="hidden" ngModel="{{user?.username}}" name="username" class="form-control" id="username" placeholder="Username">
+                        <input type="hidden" ngModel="{{user?.password}}" name="password" class="form-control" id="password" placeholder="Password">
+                        <label for="email">Email</label>
+                        <input type="email" ngModel="{{user?.email}}" name="email" class="form-control" id="email" placeholder="Email">
+                        <label for="phone">Phone</label>
+                        <input type="phone" ngModel="{{user?.phone}}" name="phone" class="form-control" id="phone" placeholder="Email">
+                        <input type="hidden" ngModel="{{user?.isSeller}}" name="isSeler" class="form-control" id="isSeller" placeholder="Are You Seller?">
+                        <br>
+                        <button [disabled]="updateProfile.invalid " (click)="onProfileUpdate(updateProfile.value)" type="submit" mat-raised-button color="primary" >Update Profile</button>
+                      </form>
+                      
+                </div>
+            </div>
+            <br><br>
+        </div>
+
+        <div class="address" >
+
+          <div class="exist" *ngIf="addressExist">
+            <h2 >Saved Addresses</h2>
+            <div class="data" *ngFor="let address of addresses" >
+              <p>{{address?.fullName}}</p>
+              <p>{{address?.building}}</p>
+              <p>{{address?.city}}</p>
+              <p>{{address?.state}}</p>
+              <p>{{address?.pin}}</p>
+              <p>{{address?.phone}}</p>
+              <button mat-raised-button color="warn" (click)="onAddressRemove(address.id)">Remove</button>
+            <hr>
+            </div>
+          </div>
+          <div class="notExist" *ngIf="!addressExist">
+            <h2>No Saved Addresses</h2>
+            <hr>
+          </div>
+            
+
+            <h2>Add Address</h2>
+            
+            <form  #addAddress="ngForm" (ngSubmit)="onAddAddress(addAddress)" >
+              <input type="hidden" ngModel="{{user?.username}}"  name="username" class="form-control" id="username" placeholder="Username" required>
+              <input type="text" ngModel name="fullName" class="form-control" id="fullName" placeholder="Full Name" required>
+              <input type="text" ngModel name="building" class="form-control" id="building" placeholder="Building, Street, House No" required>
+              <input type="text" ngModel name="city" class="form-control" id="city" placeholder="City" required>
+              <input type="text" ngModel name="state" class="form-control" id="state" placeholder="State" required>
+              <input type="text " ngModel name="pin" class="form-control" id="pin" placeholder="PIN" required>
+              <input type="tel " ngModel name="phone" class="form-control" id="phone" placeholder="Phone" required>
+              
+              <br>
+              <button [disabled]="addAddress.invalid " type="submit" mat-raised-button color="primary" >Add Address</button>
+            </form>
+            
+            
+        </div>
+    </div>
+
+
+
+</div>

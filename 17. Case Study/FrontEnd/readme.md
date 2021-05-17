@@ -1,1 +1,0 @@
-This Directory Contains the Frontend of the Case Study

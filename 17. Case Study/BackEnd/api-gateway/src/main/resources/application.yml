@@ -1,0 +1,72 @@
+server:
+  port: 5050
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: PRODUCT
+          uri: lb://PRODUCT
+          predicates:
+            - Path=/product/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: PRODUCT
+                fallbackuri: forward:/userServiceFallBack
+        - id: USER
+          uri: lb://USER
+          predicates:
+            - Path=/user/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: USER
+                fallbackuri: forward:/userServiceFallBack
+        - id: ADDRESS
+          uri: lb://ADDRESS
+          predicates:
+            - Path=/address/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: ADDRESS
+                fallbackuri: forward:/userServiceFallBack
+        - id: CART
+          uri: lb://CART
+          predicates:
+            - Path=/cart/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: CART
+                fallbackuri: forward:/userServiceFallBack
+        - id: ORDER
+          uri: lb://ORDER
+          predicates:
+            - Path=/orders/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: ORDER
+                fallbackuri: forward:/userServiceFallBack
+        - id: EMAIL
+          uri: lb://EMAIL
+          predicates:
+            - Path=/email/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: EMAIL
+                fallbackuri: forward:/userServiceFallBack
+
+hystrix:
+  command:
+    fallback:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 40000
+

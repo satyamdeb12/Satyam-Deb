@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<div class="main-cotainer">
+    <div class="small-container">
+      <button mat-button (click)="backClick()"><mat-icon>arrow_back</mat-icon></button>
+      <h2>Manage Orders</h2>
+      <table>
+  
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Order Status</th>
+        </tr>
+        <br>
+        <tr *ngFor="let orderProduct of sellerOrders">
+          <td>
+            <div class="order-info" >
+              <img src="{{orderProduct?.productImage}}" alt="Image">
+              <div>
+                <small>{{orderProduct?.productName}}</small>     
+                <br>
+                <small>₹ {{orderProduct?.price}} </small>
+                <br>
+              </div>
+            </div>
+          </td>
+          <td>
+            <p>{{orderProduct?.quantity}}</p>
+          </td>
+          <td>
+            <button class="nav-link  dropdown-toggle" [disabled]="orderProduct?.orderStatus==='delivered'" mat-raised-button data-bs-toggle="dropdown">{{orderProduct?.orderStatus}}</button>
+            <ul class="dropdown-menu dropdown-menu-end status">
+              <li><p class="dropdown-item " (click)="updateStatus(orderProduct, 'dispatched')">Dispatched</p></li>
+              <li><p class="dropdown-item " (click)="updateStatus(orderProduct, 'delivered')">Delivered</p></li>
+            </ul>
+          </td>
+          
+        </tr>  
+      </table>
+    </div>
+  </div>

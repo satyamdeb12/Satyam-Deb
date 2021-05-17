@@ -1,0 +1,228 @@
+<div class="isSeller" *ngIf="isSeller">
+<!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light n-custom">
+    <a (click)="onLogoClick()"><mat-icon  >spa</mat-icon></a>
+    <a (click)="onLogoClick()" class="navbar-brand" >EShoppingZone</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
+        aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor02">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Product <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" (click)="onSellerOrdersClick()">Manage Orders<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input type="search" (ngModelChange)="searchProduct(key.value)" #key="ngModel" ngModel name="key" id="searchName" class="form-control mr-sm-2"
+                placeholder="Search products..." required />
+        </form>
+        <a class="nav-link  dropdown-toggle" *ngIf="loggedIn" data-bs-toggle="dropdown"> <mat-icon>person</mat-icon> </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li><a class="dropdown-item" (click)="onSellerClick()" *ngIf="isSeller" > Seller Dashboard</a></li>
+          <li><a class="dropdown-item" (click)="onAccountClick()" > Account</a></li>
+          <li><a class="dropdown-item" (click)="onOrdersClick()" > Orders </a></li>
+          <li><a class="dropdown-item" (click)="onLogout()" > Logout </a></li>
+        </ul>
+    </div>
+</nav>
+<hr>
+
+<div class="container" id="main-container">
+<!-- Products -->
+    <div class="row">
+        <div *ngFor="let product of product" class="col-md-6 col-xl-3">
+            <div class="card m-b-30">
+                <div class="card-body row">
+                    <div class="col-6">
+                        <a href=""><img src="{{ product?.productImage }}" alt="" class="img-fluid w-60" /></a>
+                    </div>
+                    <div class="col-6 card-title align-self-center mb-0">
+                        <h5>{{ product?.productName }}</h5>
+                        <p class="m-0">{{product?.shortDescription}}</p>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Price: {{ product?.price }}</li>
+                    <li class="list-group-item">
+                        Unique Code : {{ product?.id }}
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <div class="float-right btn-group btn-group-sm">
+                        <a (click)="onOpenModal(product, 'edit')" class="btn btn-primary tooltips" data-placement="top" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+                        <a (click)="onOpenModal(product, 'delete')" class="btn btn-secondary tooltips" data-placement="top" data-original-title="Delete"><i class="fa fa-times"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addProductModalLabel">Add Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form #addForm="ngForm" (ngSubmit)="onAddProduct(addForm)">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" ngModel name="productName" class="form-control" id="productName" placeholder="Product Name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="shortDescription">Short Description</label>
+                            <input type="text" ngModel name="shortDescription" class="form-control" id="shortDescription" placeholder="Short Description" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="longDescription">Long Descriptin</label>
+                            <input type="text" ngModel name="longDescription" class="form-control" id="longDescription" placeholder="Long Description" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Product Category</label>
+                            <input type="text" ngModel name="productCategory" class="form-control" id="productCategory" placeholder="Product Category" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" ngModel name="price" class="form-control" id="price" placeholder="Price" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage">Display Image Link</label>
+                            <input type="url" ngModel name="productImage" class="form-control" id="productImage" placeholder="Imgur Image Link" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage1">Product Image 1 Link</label>
+                            <input type="url" ngModel name="productImage1" class="form-control" id="productImage1" placeholder="Imgur Image Link" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage2">Product Image 2 Link</label>
+                            <input type="url" ngModel name="productImage2" class="form-control" id="productImage2" placeholder="Imgur Image Link" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage3">Product Image 3 Link</label>
+                            <input type="url" ngModel name="productImage3" class="form-control" id="productImage3" placeholder="Imgur Image Link" required />
+                        </div>                  
+                        <div class="form-group">
+                            
+                            <input type="hidden" ngModel="{{seller}}" name="seller" class="form-control" id="seller" placeholder="Seller" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="text" ngModel name="quantity" class="form-control" id="quantity" placeholder="Quantity" required />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="add-product-form" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Product Modal -->
+    <div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="productEditModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="updateProductModalLabel">Update Product {{editProduct?.productName}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form #editForm="ngForm">
+                        <input type="hidden" ngModel="{{editProduct?.id}}" name="id" class="form-control" id="id" placeholder="Id">
+                        <div class="form-group">
+                            <label for="productName">Product Name</label>
+                            <input type="text" ngModel="{{editProduct?.productName}}" name="productName" class="form-control" id="productName" placeholder="Product Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="shortDescription">Short Description</label>
+                            <input type="text" ngModel="{{editProduct?.shortDescription}}" name="shortDescription" class="form-control" id="shortDescription" placeholder="Short Description" />
+                        </div>
+                        <div class="form-group">
+                            <label for="longDescription">Long Description</label>
+                            <input type="text" ngModel="{{editProduct?.longDescription}}" name="longDescription" class="form-control" id="longDescription" placeholder="Long Description" />
+                        </div>
+                        <div class="form-group">
+                            <label for="productCategory">Product Category</label>
+                            <input type="text" ngModel="{{editProduct?.productCategory}}" name="productCategory" class="form-control" id="productCategory" placeholder="Product Category" />
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" ngModel="{{editProduct?.price}}" name="price" class="form-control" id="price" name="price" placeholder="Price" />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage">Display Image Link</label>
+                            <input type="url" ngModel="{{editProduct?.productImage}}" name="productImage" class="form-control" id="productImage" placeholder="Imgur Direct Link" />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage1">Product Image 1 Link</label>
+                            <input type="url" ngModel="{{editProduct?.productImage1}}" name="productImage1" class="form-control" id="productImage1" placeholder="Imgur Direct Link" />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage2">Product Image 1 Link</label>
+                            <input type="url" ngModel="{{editProduct?.productImage2}}" name="productImage2" class="form-control" id="productImage2" placeholder="Imgur Direct Link" />
+                        </div>
+                        <div class="form-group">
+                            <label for="productImage3">Product Image 3 Link</label>
+                            <input type="url" ngModel="{{editProduct?.productImage3}}" name="productImage3" class="form-control" id="productImage3" placeholder="Imgur Direct Link" />
+                        </div>
+                        <div class="form-group" style="display: none;">
+                            <label for="seller">Seller</label>
+                            <input type="text" ngModel="{{editProduct?.seller}}" name="seller" class="form-control" id="seller" placeholder="Seller" />
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Quantity</label>
+                            <input type="number" ngModel="{{editProduct?.quantity}}" name="quantity" class="form-control" id="quantity" placeholder="Quantity" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Close</button>
+                            <button  (click)="onUpdateProduct(editForm.value)" data-dismiss="modal" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal -->
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModelLabel">Delete Product</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete product {{deleteProduct?.productName}}?</p>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            No
+                        </button>
+                        <button (click)="onDeleteProduct(deleteProduct?.id)" class="btn btn-danger" data-dismiss="modal">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification for no Products -->
+<div *ngIf="product?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
+    <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">NO PRODUCTS!</h4>
+        <p>No Products were found.</p>
+    </div>
+</div>
+</div>
+
+<div class="isNotSeller" *ngIf="!isSeller">
+    <p>You Seem To Be Lost</p>
+    <button mat-raised-button color="primary"(click)="onLogoClick()">Go To Eshipping.com</button>
+</div>

@@ -1,0 +1,54 @@
+/* Default CSS by Dashboard */
+.grid-container {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+}
+
+/* Button CSS */
+
+/* See More Button CSS */
+hr{
+  padding: 0;
+  margin: 0;
+}
+.card-btn {
+  display: inline-block;
+  padding: 8px 30px;
+  margin: 30px 0;
+  transition: 0.1s;
+  border: none;
+}
+
+a:hover{
+  cursor: pointer;
+}
+.exploreBtn {
+  position: absolute;
+  bottom: 0px;
+  left: 150px;
+}
+.price {
+  position: absolute;
+  font-weight: 500;
+  bottom: 30px;
+}
+/* Product Image CSS */
+.card-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+/* Allign Short Description To the left */
+.short-description{
+  text-align: left;
+  margin-left: 15px;
+  font-size: medium;
+  bottom: 0;
+}

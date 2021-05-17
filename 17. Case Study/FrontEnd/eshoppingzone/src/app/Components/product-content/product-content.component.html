@@ -1,0 +1,48 @@
+<app-navbar></app-navbar>
+
+<div class="grid-container" style="margin-top: 60px;" *ngIf="isWideScreen | async">
+  <mat-grid-list cols="3" rowHeight="500px">
+    <mat-grid-tile *ngFor="let card of productDesktop" [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card card-image" [style.background-image]="getImage(card.productImage)">
+        <mat-card-header>
+          <mat-card-title class="product-title"> <a (click)="onViewClick(card?.id)">{{card?.productName}}</a> <hr> </mat-card-title>
+          <div class="exploreBtn" *ngIf="loggedIn">
+            <button href="#" mat-raised-button class="card-btn" (click)="onAddToCartClick(card, card?.productName, 'Dismiss')">Add to cart</button>
+          </div>
+          <div class="exploreBtn" *ngIf="!loggedIn">
+            <button href="#" class="card-btn" (click)="onLoginClick()">Add to cart </button>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content short-description">
+          <div>{{card?.shortDescription}}</div>
+          <div class="price"><p>Price: ₹{{card?.price}}</p></div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+<div class="grid-container" style="margin-top: 60px;" *ngIf="isSmallScreen | async">
+  <mat-grid-list cols="3" rowHeight="500px">
+    <mat-grid-tile *ngFor="let card of productDesktop" [colspan]="3" [rowspan]="1">
+      <mat-card class="dashboard-card card-image" [style.background-image]="getImage(card.productImage)">
+        <mat-card-header>
+          <mat-card-title class="product-title"> <a (click)="onViewClick(card?.id)">{{card?.productName}}</a> <hr> </mat-card-title>
+          <div class="exploreBtn" *ngIf="loggedIn">
+            <button href="#" mat-raised-button class="card-btn" (click)="onAddToCartClick(card, card?.productName, 'Dismiss')">Add to cart</button>
+          </div>
+          <div class="exploreBtn" *ngIf="!loggedIn">
+            <button href="#" class="card-btn" (click)="onLoginClick()">Add to cart </button>
+          </div>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content short-description">
+          <div>{{card?.shortDescription}}</div>
+          <div class="price"><p>Price: ₹{{card?.price}}</p></div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+
+<hr>
+<app-footer></app-footer>

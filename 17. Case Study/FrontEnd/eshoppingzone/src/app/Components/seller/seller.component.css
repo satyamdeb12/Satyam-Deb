@@ -1,0 +1,48 @@
+@import "https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css";
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css";
+
+.n-custom{
+  background-color: #fff;
+}
+.n-custom .navbar-brand, .navbar-custom .navbar-text {
+  color: #000;
+}
+mat-icon :hover{
+  cursor: pointer;
+}
+.n-custom li{
+  color: #000;
+}
+.n-custom a{
+  color: #000;
+}
+.n-custom a:hover{
+  cursor: pointer;
+}
+hr{
+  padding: 0;
+  margin: 0px 0px 20px 0px;
+}
+
+
+/* Products */
+.card {
+  border: none;
+  -webkit-box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  margin-bottom: 30px;
+}
+
+.w-60 {
+  width: 60px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+
+.fa{
+  color: white;
+}

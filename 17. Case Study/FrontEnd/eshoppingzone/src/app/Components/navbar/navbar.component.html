@@ -1,0 +1,103 @@
+<div class="navbars">
+  <nav class="navbar fixed-top navbar-light navbar-expand-lg  n-custom">
+    <div class="container-fluid">
+      <a (click)="onLogoClick()"><mat-icon  >spa</mat-icon></a>
+      
+      <a class="navbar-brand"  (click)="onLogoClick()" >  EShoppingZone</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="main_nav">
+        <ul class="navbar-nav">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link  dropdown-toggle"  data-bs-toggle="dropdown">Men</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item heading disabled"> Clothes </a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item " (click)="onCategoryClick('men-tshirt')"> Tshirts </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-shirt')"> Shirts </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-jeans')"> Jeans </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-blazers')"> Blazers </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-denim-jackets')"> Denim Jackets </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-shorts')"> Shorts </a></li>
+              
+              <li><a class="dropdown-item heading disabled" (click)="onCategoryClick('men-tshirt')"> Footwear </a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item " (click)="onCategoryClick('men-formal-shoes')"> Formal Shoes </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-shirt')"> Sneakers </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-jeans')"> Flip-Flops </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('men-blazers')"> Slippers </a></li>
+              
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Women</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item heading disabled"> Clothes </a></li>
+              <div class="dropdown-divider"></div>  
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-tops')"> Tops</a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-jeans')"> Jeans </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-shirt')"> Shirts </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-dress')"> Dress </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-gown')"> Gown </a></li>
+              <li><a class="dropdown-item heading disabled"> Footwear </a></li>
+              <div class="dropdown-divider"></div>  
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-heels')"> Heels</a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-sneakers')"> Sneakers </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-flats')"> Flats </a></li>
+
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Girls</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item heading disabled"> Clothes </a></li>
+              <div class="dropdown-divider"></div>
+              <li><a class="dropdown-item" (click)="onCategoryClick('girls-tops')"> Tops</a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('girls-frocks')"> Frocks </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('girls-jeans')"> Jeans </a></li>
+              <li><a class="dropdown-item heading disabled"> Footwear </a></li>
+              <div class="dropdown-divider"></div>  
+              <li><a class="dropdown-item" (click)="onCategoryClick('women-tshirt')"> Sandals</a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('girls-sneakers')"> Sneakers </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('girls-flats')"> Flats </a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown">Boys</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item heading disabled"> Clothes </a></li>
+              <div class="dropdown-divider"></div>  
+              <li><a class="dropdown-item" (click)="onCategoryClick('boys-tshirt')"> Tshirts</a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('boys-jeans')"> Jeans </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('boys-hoodies')"> Hoodies </a></li>
+              <li><a class="dropdown-item heading disabled"> Footwear </a></li>
+              <div class="dropdown-divider"></div>  
+              <li><a class="dropdown-item" (click)="onCategoryClick('boys-formal-shoes')"> Formal Shoes</a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('boys-sneakers')"> Sneakers </a></li>
+              <li><a class="dropdown-item" (click)="onCategoryClick('boys-slippers')"> Slippers </a></li>
+            </ul>
+          </li>
+          
+        </ul>
+        
+        <ul class="navbar-nav ms-auto "  >
+          <a class="nav-link cart-text"*ngIf="!loggedIn" (click)="onLogin()">  <mat-icon>shopping_cart</mat-icon> </a>
+          <a class="nav-link"*ngIf="loggedIn" (click)="onCartClick()" ><mat-icon>shopping_cart</mat-icon> </a>
+          <a class="nav-link login-btn" mat-raised-button *ngIf="!loggedIn"  (click)="onLogin()" > Login </a>
+          
+          <a class="nav-link  dropdown-toggle" *ngIf="loggedIn"  data-bs-toggle="dropdown"> <mat-icon>person</mat-icon> </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" (click)="onSellerClick()" *ngIf="isSeller"> Seller Dashboard</a></li>
+            <li><a class="dropdown-item" (click)="onAccountClick()" > Account</a></li>
+            <li><a class="dropdown-item" (click)="onOrdersClick()"> Orders </a></li>
+            <li><a class="dropdown-item" (click)="onLogout()"> Logout </a></li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,9 @@
+
+server:
+  port: 1010
+
+spring:
+  application:
+    name: PRODUCT
+  zipkin:
+    base-url: http://127.0.0.1:9411/

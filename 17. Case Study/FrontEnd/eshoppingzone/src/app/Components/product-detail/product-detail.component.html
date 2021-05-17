@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+          <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="{{product?.productImage1}}" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{{product?.productImage2}}" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="{{product?.productImage3}}" class="d-block w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+        <div class="col-md-7">
+            <p class="newarrival text-center">NEW</p>
+            <h2>{{product?.productName}}</h2>
+            <p>{{product?.shortDescription}}</p>
+            <p>{{product?.longDescription}}</p>
+            <p class="price">INR ₹ {{product?.price}}</p>
+            <p *ngIf="available"><b>Availability: </b>In Stock</p>
+            <p *ngIf="!available"style="color: red;"><b style="color: #000;">Availability: </b>Out Of Stock</p>
+            <p><b>Condition: </b>New Arrival</p>
+            <p><b>Brand: </b>XYZ</p>
+            <div class="exploreBtn" *ngIf="loggedIn">
+              <button href="#" *ngIf="available" mat-raised-button class="card-btn" color="primary" (click)="onAddToCartClick()">Add to cart</button>
+            </div>
+            <div class="exploreBtn" *ngIf="loggedIn">
+              <button href="#" *ngIf="!available" disabled="true" mat-raised-button class="card-btn" color="primary" (click)="onAddToCartClick()">Add to cart</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

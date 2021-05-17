@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+
+<div class="main-cotainer">
+  <div class="small-container">
+    <h2>Your Orders</h2>
+    <table>
+
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Order Status</th>
+      </tr>
+      <br>
+      <tr *ngFor="let orderProduct of orderProducts">
+        <td>
+          <div class="order-info" >
+            <img src="{{orderProduct?.productImage}}" alt="Image">
+            <div>
+              <small>{{orderProduct?.productName}}</small>     
+              <br>
+              <small>₹ {{orderProduct?.price}} </small>
+              <br>
+            </div>
+          </div>
+        </td>
+        <td>
+          <p>{{orderProduct?.quantity}}</p>
+        </td>
+        <td>{{orderProduct?.orderStatus}}</td>
+      </tr>  
+    </table>
+  </div>
+</div>

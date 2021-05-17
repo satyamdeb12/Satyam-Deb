@@ -1,0 +1,8 @@
+server:
+  port: 6060
+
+spring:
+  application:
+    name: ORDER
+  zipkin:
+    base-url: http://127.0.0.1:9411/
